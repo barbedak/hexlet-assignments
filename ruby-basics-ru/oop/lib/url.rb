@@ -2,40 +2,39 @@
 
 require 'uri'
 require 'forwardable'
-require 'comparable'
 
 class Url
-  extend Forwardable
   include URI
   include Comparable
+  extend Forwardable
 
-  attr_accessor :url
+  attr_reader :url
 
-  def initialize(params)
-    @url = params[:link]
+  def initialize(link)
+    @url = URI(link)
   end
 
   def_delegators :@url, :scheme, :host, :port
 
-  # http://yandex.ru?key=value&key2=value2
-  def query_params
+  def query_params()
     result = {}
-    _, params = @url.split('?')
-    pairs = params.split('&')
-    pairs.each do |pair|
-      key, value = pair.split('=')
-      result[:key] = :value
+    _, params = @url.to_s.split('?')
+    unless params.nil?
+      pairs = params.split('&') 
+      pairs.each do |pair|
+        key, value = pair.split('=')
+        result[key.to_sym] = value
+      end
     end
     result
   end
 
   def query_param(key, value = nil)
-    params = query_params(@url)
+    params = query_params()
     params.fetch(key, value)
   end
 
-  def ==(other)
-    (@url.host == other.host) & (@url.scheme == other.scheme) &
-      (@url.port == other.port) & (@url.query_params == other.query_params)
+  def <=>(other)
+    (self.scheme <=> other.scheme) | (self.host <=> other.host) | (self.port <=> other.port) 
   end
 end
