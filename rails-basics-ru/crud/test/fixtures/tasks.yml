@@ -22,9 +22,9 @@ one:
   completed: false
 
 two:
-  name: MyString
-  description: MyText
-  status: MyString
-  creator: MyString
-  performer: MyString
+  name: MyString1
+  description: MyText1
+  status: MyString1
+  creator: MyString1
+  performer: MyString1
   completed: false
