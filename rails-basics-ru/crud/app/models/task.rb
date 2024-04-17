@@ -14,10 +14,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require 'test_helper'
-
-class TaskTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Task < ApplicationRecord
+  validates :name, :creator, :status,  presence: true
+  attribute :status, default: 'New'
+  attribute :completed, default: false
 end
