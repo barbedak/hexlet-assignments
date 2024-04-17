@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       flash[:success] = 'New task was successfully created'
-      redirect_to root_path
+      redirect_to task_path(@task)
     else
       flash[:failure] = 'Task cannot be created'
       render :new, status: :unprocessable_entity
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.destroy
       flash[:success] = 'Task was successfully deleted'
-      redirect_to root_path
+      redirect_to tasks_path
     else
       flash[:failure] = 'Task cannot be deleted'
       redirect_to task_path(@task)
