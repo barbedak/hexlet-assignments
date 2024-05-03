@@ -1,0 +1,8 @@
+h1 Show Post
+p Название #{@post.title}
+p Содержимое #{@post.body}
+p Краткое описание #{@post.summary}
+p Опубликован #{@post.published}
+div
+ span> =(link_to 'Edit', edit_post_path(@post))
+ span> =(link_to 'Delete', @post, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'})
