@@ -4,11 +4,12 @@ p
   strong.me-2 Body:
   = @post.body
 
-- @post.post_comments.each do |comment|
-  p 
-    p = comment.content
-    = link_to 'Edit Comment', edit_post_comment_path(@post, comment), class: 'btn btn-outline-primary me-2'
-    = link_to 'Delete Comment', post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+- if @post.comments.any?
+  - @post.post_comments.each do |comment|
+    p 
+      p = comment.content
+      = link_to 'Edit Comment', edit_post_comment_path(@post, comment), class: 'btn btn-outline-primary me-2'
+      = link_to 'Delete Comment', post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
 
 hr
 
