@@ -1,46 +1,48 @@
 # frozen_string_literal: true
 
-class Posts::CommentsController < Posts::ApplicationController
-  def edit
-    @comment = resource_post.comments.find params[:id]
-  end
-
-  def create
-    @comment = PostComment.new(comment_params)
-    @comment.post = resource_post
-
-    if @comment.save
-      redirect_to resource_post, notice: 'Comment was successfully created.'
-    else
-      @post = resource_post
-
-      flash[:alert] = 'Comment has not been added'
-      render 'posts/show', status: :unprocessable_entity
+module Posts
+  class CommentsController < Posts::ApplicationController
+    def edit
+      @comment = resource_post.comments.find params[:id]
     end
-  end
 
-  def update
-    @comment = resource_post.comments.find params[:id]
+    def create
+      @comment = PostComment.new(comment_params)
+      @comment.post = resource_post
 
-    if @comment.update(comment_params)
-      redirect_to resource_post, notice: 'Comment was successfully updated.'
-    else
-      flash[:alert] = 'Comment has not been updated'
-      render :edit, status: :unprocessable_entity
+      if @comment.save
+        redirect_to resource_post, notice: 'Comment was successfully created.'
+      else
+        @post = resource_post
+
+        flash[:alert] = 'Comment has not been added'
+        render 'posts/show', status: :unprocessable_entity
+      end
     end
-  end
 
-  def destroy
-    @comment = PostComment.find params[:id]
+    def update
+      @comment = resource_post.comments.find params[:id]
 
-    @comment.destroy
+      if @comment.update(comment_params)
+        redirect_to resource_post, notice: 'Comment was successfully updated.'
+      else
+        flash[:alert] = 'Comment has not been updated'
+        render :edit, status: :unprocessable_entity
+      end
+    end
 
-    redirect_to resource_post
-  end
+    def destroy
+      @comment = PostComment.find params[:id]
 
-  private
+      @comment.destroy
 
-  def comment_params
-    params.require(:post_comment).permit(:content)
+      redirect_to resource_post
+    end
+
+    private
+
+    def comment_params
+      params.require(:post_comment).permit(:content)
+    end
   end
 end

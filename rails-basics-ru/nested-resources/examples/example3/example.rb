@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   scope module: :web do
     root 'books#index'
     resources :books, except: [:index] do
-      resources :pages, only: [:index, :new, :create]
+      resources :pages, only: %i[index new create]
       # добавляется метод для каждого экземпляра ресурса
       post :publish
     end
@@ -12,7 +12,6 @@ end
 # bin/rails routes -g publish
 #       Prefix Verb   URI Pattern                       Controller#Action
 # book_publish POST   /books/:book_id/publish(.:format) web/books#publish
-
 
 Rails.application.routes.draw do
   scope module: :web do
