@@ -3,9 +3,19 @@
 p
   strong.me-2 Body:
   = @post.body
-/ BEGIN
 
-/ END
+- @post.post_comments.each do |comment|
+  p 
+    p = comment.content
+    = link_to 'Edit Comment', edit_post_comment_path(@post, comment), class: 'btn btn-outline-primary me-2'
+    = link_to 'Delete Comment', post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
+
+hr
+
+= simple_form_for @comment, url: post_comments_path(@post) do |f|
+  = f.input :content, label: false, as: :text
+  = f.submit class: 'btn btn-primary'
+ 
 hr
 
 .d-flex

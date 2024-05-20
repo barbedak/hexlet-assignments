@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   root 'homes#index'
 
-  # BEGIN
-  
-  # END
+  resources :posts do
+    scope module: :posts do
+      resources :comments, only: %i[edit create update destroy]
+    end
+  end
 end
