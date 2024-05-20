@@ -1,0 +1,17 @@
+en:
+  posts:
+    # BEGIN
+    index:
+      one: 1 comment
+      two: 2 comment
+    # END
+
+    comments:
+      edit:
+        title: Editing comment
+
+      create:
+        success: Comment was created.
+
+      update:
+        success: Comment was updated.
