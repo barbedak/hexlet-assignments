@@ -39,3 +39,41 @@ en:
   home: Home
   posts: Posts
   title: Home Page
+  posts:
+    index:
+      title: Posts
+      table_title: Title
+      new_post: New Post
+      comment_count:
+        zero: No comments
+        one: '%{count} comment'
+        other: '%{count} comments'
+        
+    new:
+      title: New Post
+
+    edit:
+      title: Editing post
+
+    show:
+      body: Body
+      comments: Comments
+
+    create:
+      success: Post was created.
+
+    update:
+      success: Post was updated.
+
+    destroy:
+      success: Post was destroyed.
+
+    comments:
+      edit:
+        title: Editing comment
+
+      create:
+        success: Comment was created.
+
+      update:
+        success: Comment was updated.
