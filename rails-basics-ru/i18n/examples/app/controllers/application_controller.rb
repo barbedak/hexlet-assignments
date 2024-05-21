@@ -10,18 +10,18 @@ class ApplicationController < ActionController::Base
   # Локаль может быть передана как в query param, так и в url
   # http://localhost:3000/users?locale=ru
   # http://localhost:3000/ru/users
-  def set_locale_param(&action)
+  def set_locale_param(&)
     locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(locale, &)
   end
 
-  def set_locale_param_with_cookie(&action)
+  def set_locale_param_with_cookie(&)
     locale = params[:locale] || cookies[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(locale, &)
     cookies[:locale] = I18n.locale
   end
 
-  def set_locale_domain(&action)
+  def set_locale_domain
     # http://en.example.com
     # http://ru.example.com
     locale = request.subdomains.first
