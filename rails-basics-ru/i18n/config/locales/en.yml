@@ -39,6 +39,10 @@ en:
   home: Home
   posts: Posts
   title: Home Page
+  
+  home:
+    index:
+      title: Home Page
   posts:
     index:
       title: Posts
