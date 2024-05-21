@@ -8,7 +8,7 @@ en:
         zero: No comments
         one: '%{count} comment'
         other: '%{count} comments'
-
+        
     new:
       title: New Post
 
