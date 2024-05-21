@@ -35,15 +35,13 @@ en:
   destroy: Delete
   destroy_confirmation: Are you sure?
   back: Back
-  hexlet_title: © Hexlet, %year
   home: Home
   
   posts: Posts
-  title: Home Page
   
   home:
     index:
-      title: Home Page
+      title: Home page
   posts:
     index:
       title: Posts
