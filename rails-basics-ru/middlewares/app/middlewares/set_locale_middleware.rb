@@ -13,7 +13,7 @@ class SetLocaleMiddleware
     @status, @headers, @response = @app.call(env)
     request = Rack::Request.new(env)
     locale = request.env['HTTP_ACCEPT_LANGUAGE']&.scan(/^[a-z]{2}/)&.first
-    I18n.locale = locale || I18n.default_locale
+    I18n.locale = locale.to_s || I18n.default_locale
     [@status, @headers, @response]
   end
 end
